@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Register XPayr config provider so checkout JS receives payment configuration -->
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="xpayr_gateway_config_provider" xsi:type="object">Xpayr\Gateway\Model\XpayrConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Intercept success page to redirect to XPayr payment URL -->
+    <type name="Magento\Checkout\Controller\Onepage\Success">
+        <plugin name="xpayr_success_redirect"
+                type="Xpayr\Gateway\Plugin\SuccessRedirect"
+                sortOrder="10" />
+    </type>
+</config>

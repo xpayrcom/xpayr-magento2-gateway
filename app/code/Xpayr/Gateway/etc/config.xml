@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <xpayr_gateway>
+                <active>0</active>
+                <model>Xpayr\Gateway\Model\Methods\Xpayr</model>
+                <order_status>pending</order_status>
+                <status_order_placed>pending_payment</status_order_placed>
+                <status_order_paid>processing</status_order_paid>
+                <title>Pay with Crypto (XPayr)</title>
+                <allowspecific>0</allowspecific>
+                <group>xpayr</group>
+                <api_base_url>https://xpayr.com/api/v1</api_base_url>
+                <network></network>
+                <currency></currency>
+                <webhook_auto_sync>1</webhook_auto_sync>
+                <debug>0</debug>
+            </xpayr_gateway>
+        </payment>
+    </default>
+</config>

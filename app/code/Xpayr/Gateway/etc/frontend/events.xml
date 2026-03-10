@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!--
+        After a successful order placement via checkout, fire the XPayr redirect observer.
+        This observer calls the XPayr API, stores the payment URL in the checkout session,
+        and the success page controller plugin then redirects to that URL.
+    -->
+    <event name="checkout_submit_all_after">
+        <observer name="xpayr_gateway_create_payment_session"
+                  instance="Xpayr\Gateway\Observer\CreatePaymentSession" />
+    </event>
+</config>

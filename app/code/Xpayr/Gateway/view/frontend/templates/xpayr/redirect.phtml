@@ -1,0 +1,13 @@
+<?php
+/** @var \Xpayr\Gateway\Block\Redirect $block */
+$paymentUrl = $block->getPaymentUrl();
+$fallbackUrl = $block->getFailureUrl();
+?>
+<div class="xpayr-redirect-wrap">
+    <h2 class="xpayr-redirect-title">Redirecting to XPayr...</h2>
+    <p class="xpayr-redirect-text">Please wait while we prepare your secure crypto checkout.</p>
+</div>
+<div id="xpayr-redirect-data"
+     data-payment-url="<?php echo $block->escapeUrl((string) $paymentUrl); ?>"
+     data-fallback-url="<?php echo $block->escapeUrl((string) $fallbackUrl); ?>"
+     hidden></div>
