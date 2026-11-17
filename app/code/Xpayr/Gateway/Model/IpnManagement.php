@@ -38,7 +38,11 @@ class IpnManagement implements IpnManagementInterface
                 ->get(\Magento\Framework\Encryption\EncryptorInterface::class);
             $secret = $encryptor->decrypt($secret);
         }
-        if ($secret !== '') {
+        if ($secret === '') {
+            // Fail closed: never accept an unsigned webhook.
+            return json_encode(['error' => true, 'message' => 'Webhook secret not configured']);
+        }
+        {
             $headerSig = $_SERVER['HTTP_X_XPAYR_SIGNATURE'] ?? '';
             $headerSig = trim((string) $headerSig);
             if (strpos($headerSig, 'sha256=') === 0) {
